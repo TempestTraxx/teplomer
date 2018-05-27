@@ -1,4 +1,4 @@
-
+var teplota= document.getElementById("teplota")
 var tlac = document.getElementById("tl");
 
 tlac.addEventListener("click", function () {
@@ -8,13 +8,25 @@ tlac.addEventListener("click", function () {
     request.onload = function () {
         //console.log(request.responseText)
         var data = JSON.parse(request.responseText);
-        console.log(JSON.parse(data[0]));
+        //console.log(data[0]);
+        vyber(data)
     };
     request.send();
 });
 
 
-function vyber() {
+function vyber(data) {
     var date = document.getElementById("datumy");
     var dateString = date.options[date.selectedIndex].text;
-    document.getElementById("datum").innerHTML = dateString;}
+    document.getElementById("datum").innerHTML = dateString;
+    var str="";
+var sel = document.getElementById("datumy");
+var text= sel.options[sel.selectedIndex].text;
+if(text=="23.05.2018"){
+    str=data[0].teplota;}
+    if(text=="24.05.2018"){
+        str=data[1].teplota;}
+        if(text=="25.05.2018"){
+            str=data[2].teplota;}
+
+document.getElementById("teplota").innerHTML=str;}
