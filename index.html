@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="data.json"></script>
+    <script src="main.js"></script>
+</head>
+<body style="background-color: dimgrey; text-align: center;font-size: medium;font-family: 'Trebuchet MS'">
+
+<select id="datumy">
+    <option value="23052018">23.05.2018</option>
+    <option value="24052018">24.05.2018</option>
+    <option value="25052018" selected>25.05.2018</option>
+</select>
+<button onclick="vyber()">OK</button>
+<br><span id="datum"></span><span> bola teplota </span><span id="teplota"></span><span> stupňov.</span>
+<script>
+    function vyber() {
+        var date = document.getElementById("datumy");
+        var dateString = date.options[date.selectedIndex].text;
+        document.getElementById("datum").innerHTML = dateString;
+
+
+        var data =$.getJSON("data.json", function (data) {
+            $.each(data, function (index, value) {
+                console.log(value);
+            });
+        });
+    }
+ var obj = JSON.parse(vyber().value);
+    document.getElementById("teplota").innerHTML = obj.data[0].teplota;
+
+
+</script>
+
+</body>
+</html>
